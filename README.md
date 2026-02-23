@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# Recruitment Task - E-commerce Data Visualization
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projekt analizy i wizualizacji danych e-commerce przygotowany w ramach procesu rekrutacyjnego. Aplikacja przetwarza dane z pliku JSON i prezentuje kluczowe wskaźniki biznesowe za pomocą interaktywnych wykresów.
 
-Currently, two official plugins are available:
+## 📊 Wybrane wizualizacje i uzasadnienie
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+W projekcie zdecydowałem się na przygotowanie 3 kluczowych zestawień, które najlepiej oddają kondycję sprzedaży w analizowanym okresie (1-7.10.2024):
 
-## React Compiler
+1. **Udział krajów w przychodzie (Wykres kołowy / Pie Chart)**
+   - **Kluczowe dane:** `country`, `quantity`, `unitPrice`.
+   - **Dlaczego:** Pozwala błyskawicznie ocenić, które rynki są najbardziej dochodowe. Wykres kołowy idealnie obrazuje proporcje finansowe bez konieczności analizowania tabel.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. **Ilość zamówień w czasie (Wykres słupkowy / Column Chart)**
+   - **Kluczowe dane:** `timestamp`, `quantity`.
+   - **Dlaczego:** Pokazuje dynamikę sprzedaży dzień po dniu. Agregacja danych do pełnych dób pozwala wyłapać trendy (piki sprzedażowe) w skali tygodnia.
 
-## Expanding the ESLint configuration
+3. **Segmentacja urządzeń wg krajów (Wykres skumulowany / Stacked Column)**
+   - **Kluczowe dane:** `country`, `device`, `quantity`.
+   - **Dlaczego:** To najbardziej zaawansowane zestawienie, które łączy lokalizację z technologią. Pokazuje nie tylko wolumen sprzedaży w danym kraju, ale też preferencje klientów (Desktop vs Mobile vs Tablet), co jest kluczowe dla optymalizacji UX.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Technologia
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Framework:** React 19 (Vite)
+- **Język:** TypeScript
+- **Zarządzanie danymi:** TanStack Query (React Query) - dla zapewnienia czystego pobierania i cache'owania danych.
+- **Biblioteka wykresów:** Highcharts (z wrapperem `highcharts-react-official`).
+- **Menedżer pakietów:** pnpm (szybszy i bardziej wydajny niż npm).
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🚀 Uruchomienie lokalne
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Aby uruchomić projekt na swoim komputerze, wykonaj poniższe kroki:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. **Wymagania:**
+   - Zainstalowany [Node.js](https://nodejs.org) (rekomendowana wersja v18 lub nowsza).
+   - Zainstalowany `pnpm` (jeśli nie masz: `npm install -g pnpm`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. **Instalacja zależności:**
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+   ```bash
+   pnpm install
+
+   ```
+
+3. **Uruchomienia:**
+   ```bash
+   pnpm dev
+   ```
