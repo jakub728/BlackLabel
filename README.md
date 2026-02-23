@@ -45,3 +45,9 @@ Aby uruchomić projekt na swoim komputerze, wykonaj poniższe kroki:
    ```bash
    pnpm dev
    ```
+
+## 📝 Decyzje projektowe
+
+- **Agregacja:** Dane w czasie są grupowane do pełnych dni (setHours(0,0,0,0)), co eliminuje szum informacyjny wynikający z dokładnych godzin transakcji
+- **Wydajność:** Użyłem hooka useMemo do transformacji danych pod format Highcharts, aby uniknąć zbędnych obliczeń przy re-renderach
+- **Design:** Czytelność i stonowana paleta kolorów, usunięte zbędne elementy (np. logo Highcharts) dla lepszego odbioru wizualnego
